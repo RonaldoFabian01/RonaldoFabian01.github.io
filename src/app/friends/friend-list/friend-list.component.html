@@ -1,0 +1,49 @@
+<h1>Lista de amigos</h1>
+
+<div class="socialarea">
+  <div class="friends column">
+    <ul>
+      <li *ngFor="let friend of Listfriend" (click)="openchat(friend)">
+        {{friend.name}}
+      </li>
+    </ul>
+  </div>
+  <div class="chat column">
+    <div class="phone-container">
+      <div class="whatsapp-header">
+        <div class="profile-pic"> <img [src]="friend.image" alt="Profile" class="profile-photo"> </div>
+        <div>{{friend.name}}</div>
+      </div>
+      <div class="chat-container">
+        <!-- Mensajes aquí -->
+        <div class="message" [ngClass]="{
+          'sent': message.type == 'sent', 
+          'received': message.type == 'received' 
+        }" *ngFor="let message of friend.chat">
+          {{ message.content }}
+          <div class="message-info">
+            <span> {{ message.time }} </span>
+          </div>
+        </div>
+
+        <!-- <div class="message sent">
+          ¡Hola! ¿Cómo va todo?
+          <div class="message-info">
+            <span>10:15</span>
+          </div>
+        </div>
+        <div class="message received">
+          ¡Hola! Bien, ¿y tú?
+          <div class="message-info">
+            <span>10:16</span>
+          </div>
+        </div> -->
+        <div class="input-bar">
+          <input type="text" placeholder="Escribe un mensaje aquí">
+          <button>Enviar</button>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
